@@ -1,0 +1,17 @@
+{
+    "translations": {
+        "de": {
+            "District": "Landkreis",
+            "Statitics": "Statistiken",
+            "Last Update": "Letzte Aktualisierung",
+            "7 Days Incidence District": "7 Tage Inzidenz Landkreis",
+            "Cases last 7 Days District": "Fälle letzte 7 Tage Landkreis",
+            "Deathes last 7 Days District": "Todesfälle letzte 7 Tage Landkreis",
+            "7 Days Incidence BL": "7 Tage Inzidenz Bundesland",
+            "Cases last 7 Days BL": "Fälle letzte 7 Tage Bundesland",
+            "Deathes last 7 Days BL": "Todesfälle letzte 7 Tage Bundesland",
+            "Seconds": "Sekunden",
+            "Update interval": "Aktualisierungsintervall"
+        }
+    }
+}

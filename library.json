@@ -1,0 +1,12 @@
+{
+    "id": "{830228EE-A9E9-13B3-E620-5D426351A23A}",
+    "name": "COVID19",
+    "author": "Kai Schnittcher",
+    "url": "https://deinsmarthome.info",
+    "compatibility": {
+        "version": "5.0"
+    },
+    "version": "1.0",
+    "build": 0,
+    "date": 0
+}
