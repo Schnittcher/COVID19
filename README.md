@@ -20,8 +20,11 @@ Dieses Modul zeigt die aktuelle COVID-19 Statistik an.
 
 ## 2. Enthaltene Module
 
-### LandkreisStats
-Dieses Modul zeigt die Statistiken des Landkreises und des Bundeslandes an.
+### DistrictStats
+Dieses Modul zeigt die Statistiken eines Landkreises an.
+
+### ProvinceStats
+Dieses Modul zeigt die Statistiken eines Bundeslandes an.
 
 ## 3. Installation
 

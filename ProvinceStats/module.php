@@ -52,13 +52,6 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
 
         public function updateProvinceStats()
         {
-            /**
-             * $where = 'GEN+%3D+%27' . $this->ReadPropertyString('district') . '%27';
-             * $url = 'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=' . $where . '&outFields=cases7_per_100k_txt%2CBL_ID%2CGEN%2Clast_update%2Ccases7_bl_per_100k%2Ccases7_lk%2Cdeath7_lk%2Ccases7_bl%2Cdeath7_bl&returnGeometry=false&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=false&quantizationParameters=&sqlFormat=none&f=pjson&token=';
-             * $dataJSON = file_get_contents($url);
-             * $data = json_decode($dataJSON, true);
-             * IPS_LogMessage('test', print_r($data, true));
-             */
             $where = "LAN_ew_GEN = '" . $this->ReadPropertyString('province') . "'";
             $outFields = 'LAN_ew_GEN,Fallzahl,Aktualisierung,faelle_100000_EW,Death,cases7_bl_per_100k,cases7_bl,death7_bl';
             $data = $this->ProvinceRequest($where, $outFields);
