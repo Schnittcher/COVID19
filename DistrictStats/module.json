@@ -1,9 +1,9 @@
 {
     "id": "{DCF79621-F543-57B7-597D-8DB8EB06E516}",
-    "name": "LandkreisStats",
+    "name": "DistrictStats",
     "type": 3,
     "vendor": "",
-    "aliases": ["COVID19 Landkreis Statistik"],
+    "aliases": ["COVID-19 Landkreis Statistik"],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],

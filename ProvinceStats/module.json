@@ -1,0 +1,12 @@
+{
+    "id": "{46FA3841-5279-4D79-8856-6BD57EBD6378}",
+    "name": "ProvinceStats",
+    "type": 3,
+    "vendor": "",
+    "aliases": ["COVID-19 Bundesland Statistik"],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "COVID",
+    "url": "https://deinsmarthome.info"
+}

@@ -1,0 +1,73 @@
+{
+    "elements": [
+        { "type": "Select", "name": "province", "caption": "Province", "onChange": "COVID_updateDistricts($id,$province);",
+            "options": [
+                { "caption": "-", "value": 0 },
+                { "caption": "Schleswig-Holstein", "value": 1 },
+                { "caption": "Hamburg", "value": 2 },
+                { "caption": "Niedersachsen", "value": 3 },
+                { "caption": "Bremen", "value": 4 },
+                { "caption": "Nordrhein-Westfalen", "value": 5 },
+                { "caption": "Hessen", "value": 6 },
+                { "caption": "Rheinland-Pfalz", "value": 7 },
+                { "caption": "Baden-Württemberg", "value": 8 },
+                { "caption": "Bayern", "value": 9 },
+                { "caption": "Saarland", "value": 10 },
+                { "caption": "Berlin", "value": 11 },
+                { "caption": "Brandenburg", "value": 12 },
+                { "caption": "Mecklenburg-Vorpommern", "value": 13 },
+                { "caption": "Sachsen", "value": 14 },
+                { "caption": "Sachsen-Anhalt", "value": 15 },
+                { "caption": "Thüringen", "value": 16 }
+            ]
+        },
+        { "type": "Select", "name": "district", "caption": "District",
+            "options": [
+                { "caption": "-", "value": "-" }
+            ]
+        },
+        {
+            "type": "ExpansionPanel",
+            "caption": "Statitics",
+            "items": [
+                { "type": "CheckBox",
+                  "name": "cases7_per_100k_txt",
+                  "caption": "7 Days Incidence"
+                },
+                { "type": "CheckBox",
+                    "name": "cases7_lk",
+                    "caption": "Cases last 7 Days"
+                },
+                { "type": "CheckBox",
+                    "name": "death7_lk",
+                    "caption": "Deaths last 7 Days"
+                },
+
+                { "type": "CheckBox",
+                    "name": "cases",
+                    "caption": "Total cases"
+                },
+                { "type": "CheckBox",
+                    "name": "cases_per_population",
+                    "caption": "Cases per population"
+                },
+                { "type": "CheckBox",
+                    "name": "cases_per_100k",
+                    "caption": "Cases per 100k"
+                },
+                { "type": "CheckBox",
+                    "name": "deaths",
+                    "caption": "Deaths"
+                },
+                { "type": "CheckBox",
+                    "name": "death_rate",
+                    "caption": "Death rate"
+                }
+            ]
+        },
+        { "type": "Label", "caption": "Update interval"},
+        { "type": "NumberSpinner", "name": "UpdateInterval", "caption": "Seconds", "suffix": "Seconds"}
+    ],
+    "actions": [],
+    "status": []
+}

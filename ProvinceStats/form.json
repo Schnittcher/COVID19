@@ -1,0 +1,59 @@
+{
+    "elements": [
+        { "type": "Select", "name": "province", "caption": "Province",
+            "options": [
+                { "caption": "-", "value": "-" },
+                { "caption": "Schleswig-Holstein", "value": "Schleswig-Holstein" },
+                { "caption": "Hamburg", "value": "Hamburg" },
+                { "caption": "Niedersachsen", "value": "Niedersachsen" },
+                { "caption": "Bremen", "value": "Bremen" },
+                { "caption": "Nordrhein-Westfalen", "value": "Nordrhein-Westfalen" },
+                { "caption": "Hessen", "value": "Hessen" },
+                { "caption": "Rheinland-Pfalz", "value": "Rheinland-Pfalz" },
+                { "caption": "Baden-Württemberg", "value": "Baden-Württemberg" },
+                { "caption": "Bayern", "value": "Bayern" },
+                { "caption": "Saarland", "value": "Saarland" },
+                { "caption": "Berlin", "value": "Berlin" },
+                { "caption": "Brandenburg", "value": "Brandenburg" },
+                { "caption": "Mecklenburg-Vorpommern", "value": "Mecklenburg-Vorpommern" },
+                { "caption": "Sachsen", "value": "Sachsen" },
+                { "caption": "Sachsen-Anhalt", "value": "Sachsen-Anhalt" },
+                { "caption": "Thüringen", "value": "Thüringen" }
+            ]
+        },
+        {
+            "type": "ExpansionPanel",
+            "caption": "Statitics",
+            "items": [
+                { "type": "CheckBox",
+                  "name": "cases7_bl_per_100k",
+                  "caption": "7 Days Incidence"
+                },
+                { "type": "CheckBox",
+                    "name": "cases7_bl",
+                    "caption": "Cases last 7 Days"
+                },
+                { "type": "CheckBox",
+                    "name": "death7_bl",
+                    "caption": "Deaths last 7 Days"
+                },
+                { "type": "CheckBox",
+                    "name": "Fallzahl",
+                    "caption": "Total cases"
+                },
+                { "type": "CheckBox",
+                    "name": "faelle_100000_EW",
+                    "caption": "Cases per 100k"
+                },
+                { "type": "CheckBox",
+                    "name": "Death",
+                    "caption": "Deaths"
+                }
+            ]
+        },
+        { "type": "Label", "caption": "Update interval"},
+        { "type": "NumberSpinner", "name": "UpdateInterval", "caption": "Seconds", "suffix": "Seconds"}
+    ],
+    "actions": [],
+    "status": []
+}

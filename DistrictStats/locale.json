@@ -1,0 +1,20 @@
+{
+    "translations": {
+        "de": {
+            "Province": "Bundesland",
+            "District": "Landkreis",
+            "Statitics": "Statistiken",
+            "Last Update": "Letzte Aktualisierung",
+            "7 Days Incidence": "7 Tage Inzidenz",
+            "Cases last 7 Days": "Fälle letzte 7 Tage",
+            "Deaths last 7 Days": "Todesfälle letzte 7 Tage",
+            "Total cases": "Gesamte Fälle",
+            "Cases per population": "Fälle pro Bevölkerung",
+            "Cases per 100k": "Fälle pro 100k Einwohner",
+            "Deaths": "Gesamte Todesfälle",
+            "Death rate": "Todesrate",
+            "Seconds": "Sekunden",
+            "Update interval": "Aktualisierungsintervall"
+        }
+    }
+}
