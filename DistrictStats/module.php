@@ -63,6 +63,10 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             $this->MaintainVariable('cases7_bl', $this->Translate('Cases last 7 Days BL'), 2, '', 10, $this->ReadPropertyBoolean('cases7_bl') == true);
             $this->MaintainVariable('death7_bl', $this->Translate('Deaths last 7 Days BL'), 2, '', 11, $this->ReadPropertyBoolean('death7_bl') == true);
 
+            if ($this->ReadPropertyInteger('province') != 0) {
+                $this->updateDistricts($this->ReadPropertyInteger('province'));
+            }
+
             $this->SetTimerInterval('COVID_DistrictUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
         }
 
