@@ -12,6 +12,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             parent::Create();
             $this->RegisterPropertyInteger('province', 0);
             $this->RegisterPropertyString('district', '-');
+            $this->RegisterPropertyString('LKSK', 'LK');
             $this->RegisterPropertyBoolean('cases7_per_100k_txt', true);
             $this->RegisterPropertyBoolean('cases7_lk', true);
             $this->RegisterPropertyBoolean('death7_lk', true);
@@ -93,46 +94,48 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
         public function updateDistrictStats()
         {
             $where = "GEN = '" . $this->ReadPropertyString('district') . "'";
-            $outFields = 'cases7_per_100k_txt,BL_ID,GEN,last_update,cases7_bl_per_100k,cases7_lk,death7_lk,cases,cases_per_population,cases_per_100k,deaths,death_rate,cases7_bl,death7_bl';
+            $outFields = 'county,cases7_per_100k_txt,BL_ID,GEN,last_update,cases7_bl_per_100k,cases7_lk,death7_lk,cases,cases_per_population,cases_per_100k,deaths,death_rate,cases7_bl,death7_bl';
             $data = $this->DistrictRequest($where, $outFields);
 
             foreach ($data as $item) {
-                if ($this->ReadPropertyBoolean('cases7_per_100k_txt')) {
-                    $this->SetValue('cases7_per_100k_txt', $item['attributes']['cases7_per_100k_txt']);
-                }
-                if ($this->ReadPropertyBoolean('cases7_lk')) {
-                    $this->SetValue('cases7_lk', $item['attributes']['cases7_lk']);
-                }
-                if ($this->ReadPropertyBoolean('death7_lk')) {
-                    $this->SetValue('death7_lk', $item['attributes']['death7_lk']);
-                }
+                if (substr($item['attributes']['county'], 0, 2) == $this->ReadPropertyString('LKSK')) {
+                    if ($this->ReadPropertyBoolean('cases7_per_100k_txt')) {
+                        $this->SetValue('cases7_per_100k_txt', $item['attributes']['cases7_per_100k_txt']);
+                    }
+                    if ($this->ReadPropertyBoolean('cases7_lk')) {
+                        $this->SetValue('cases7_lk', $item['attributes']['cases7_lk']);
+                    }
+                    if ($this->ReadPropertyBoolean('death7_lk')) {
+                        $this->SetValue('death7_lk', $item['attributes']['death7_lk']);
+                    }
 
-                if ($this->ReadPropertyBoolean('cases')) {
-                    $this->SetValue('cases', $item['attributes']['cases']);
-                }
-                if ($this->ReadPropertyBoolean('cases_per_population')) {
-                    $this->SetValue('cases_per_population', round($item['attributes']['cases_per_population'], 2));
-                }
-                if ($this->ReadPropertyBoolean('cases_per_100k')) {
-                    $this->SetValue('cases_per_100k', round($item['attributes']['cases_per_100k'], 2));
-                }
-                if ($this->ReadPropertyBoolean('deaths')) {
-                    $this->SetValue('deaths', $item['attributes']['deaths']);
-                }
-                if ($this->ReadPropertyBoolean('death_rate')) {
-                    $this->SetValue('death_rate', round($item['attributes']['death_rate'], 2));
-                }
-                if ($this->ReadPropertyBoolean('cases7_bl_per_100k')) {
-                    $this->SetValue('cases7_bl_per_100k', $item['attributes']['cases7_bl_per_100k']);
-                }
-                if ($this->ReadPropertyBoolean('cases7_bl')) {
-                    $this->SetValue('cases7_bl', $item['attributes']['cases7_bl']);
-                }
+                    if ($this->ReadPropertyBoolean('cases')) {
+                        $this->SetValue('cases', $item['attributes']['cases']);
+                    }
+                    if ($this->ReadPropertyBoolean('cases_per_population')) {
+                        $this->SetValue('cases_per_population', round($item['attributes']['cases_per_population'], 2));
+                    }
+                    if ($this->ReadPropertyBoolean('cases_per_100k')) {
+                        $this->SetValue('cases_per_100k', round($item['attributes']['cases_per_100k'], 2));
+                    }
+                    if ($this->ReadPropertyBoolean('deaths')) {
+                        $this->SetValue('deaths', $item['attributes']['deaths']);
+                    }
+                    if ($this->ReadPropertyBoolean('death_rate')) {
+                        $this->SetValue('death_rate', round($item['attributes']['death_rate'], 2));
+                    }
+                    if ($this->ReadPropertyBoolean('cases7_bl_per_100k')) {
+                        $this->SetValue('cases7_bl_per_100k', $item['attributes']['cases7_bl_per_100k']);
+                    }
+                    if ($this->ReadPropertyBoolean('cases7_bl')) {
+                        $this->SetValue('cases7_bl', $item['attributes']['cases7_bl']);
+                    }
 
-                if ($this->ReadPropertyBoolean('death7_bl')) {
-                    $this->SetValue('death7_bl', $item['attributes']['death7_bl']);
+                    if ($this->ReadPropertyBoolean('death7_bl')) {
+                        $this->SetValue('death7_bl', $item['attributes']['death7_bl']);
+                    }
+                    $this->SetValue('last_update', $item['attributes']['last_update']);
                 }
-                $this->SetValue('last_update', $item['attributes']['last_update']);
             }
         }
     }

@@ -3,6 +3,8 @@
         "de": {
             "Province": "Bundesland",
             "District": "Landkreis",
+            "District / City": "Landkreis / Stadtkreis",
+            "City": "Stadtkreis",
             "Statitics": "Statistiken",
             "Last Update": "Letzte Aktualisierung",
             "7 Days Incidence": "7 Tage Inzidenz",

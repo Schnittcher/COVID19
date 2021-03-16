@@ -26,6 +26,12 @@
                 { "caption": "-", "value": "-" }
             ]
         },
+        { "type": "Select", "name": "LKSK", "caption": "District / City",
+            "options": [
+                { "caption": "District", "value": "LK" },
+                { "caption": "City", "value": "SK" }
+            ]
+        },
         {
             "type": "ExpansionPanel",
             "caption": "Statitics",

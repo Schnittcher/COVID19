@@ -1,0 +1,18 @@
+{
+    "translations": {
+        "de": {
+            "Country": "Land",
+            "District": "Landkreis",
+            "Last Update": "Letzte Aktualisierung",
+            "Cases": "Fälle",
+            "Deaths": "Todesfälle",
+            "Recovered": "Erholt",
+            "R": "R-Wert",
+            "7 Days Incidence": "7 Tage Inzidenz",
+            "Cases per week": "Fälle pro Woche",
+            "Cases per 100k": "Fälle pro 100k Einwohner",
+            "Seconds": "Sekunden",
+            "Update interval": "Aktualisierungsintervall"
+        }
+    }
+}

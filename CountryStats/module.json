@@ -1,0 +1,12 @@
+{
+    "id": "{6BD6A4F7-D502-4AA1-8935-6EAF3E757280}",
+    "name": "CountryStats",
+    "type": 3,
+    "vendor": "",
+    "aliases": ["COVID-19 Landes Statistik"],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "COVID",
+    "url": "https://deinsmarthome.info"
+}
