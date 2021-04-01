@@ -72,7 +72,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
         
         public function RequestAction($Ident, $Value)
         {
-            if ($Ident == 'updateDistricts'){
+            if ($Ident == 'updateDistricts') {
                 return $this->updateDistricts($Value);
             }
         }
