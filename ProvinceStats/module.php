@@ -47,6 +47,11 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             $this->MaintainVariable('faelle_100000_EW', $this->Translate('Cases per 100k'), 2, '', 6, $this->ReadPropertyBoolean('faelle_100000_EW') == true);
 
             $this->MaintainVariable('Death', $this->Translate('Deaths'), 2, '', 7, $this->ReadPropertyBoolean('Death') == true);
+
+            if (IPS_GetKernelRunlevel() == KR_READY) {
+                $this->updateProvinceStats();
+            }
+
             $this->SetTimerInterval('COVID_ProvinceUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
         }
 

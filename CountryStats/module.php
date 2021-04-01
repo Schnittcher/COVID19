@@ -38,6 +38,10 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             $this->RegisterVariableInteger('casesPerWeek', $this->Translate('Cases per Week'), '', 6);
             $this->RegisterVariableFloat('r', $this->Translate('R'), '', 7);
 
+            if (IPS_GetKernelRunlevel() == KR_READY) {
+                $this->updateCountryStats();
+            }
+
             $this->SetTimerInterval('COVID_CountryUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
         }
 
