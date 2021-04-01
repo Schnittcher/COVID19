@@ -1,6 +1,6 @@
 {
     "elements": [
-        { "type": "Select", "name": "province", "caption": "Province", "onChange": "COVID_updateDistricts($id,$province);",
+        { "type": "Select", "name": "province", "caption": "Province", "onChange": "IPS_RequestAction($id,'updateDistricts',$province);",
             "options": [
                 { "caption": "-", "value": 0 },
                 { "caption": "Schleswig-Holstein", "value": 1 },
