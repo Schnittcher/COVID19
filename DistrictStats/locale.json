@@ -16,7 +16,8 @@
             "Deaths": "Gesamte Todesfälle",
             "Death rate": "Todesrate",
             "Seconds": "Sekunden",
-            "Update interval": "Aktualisierungsintervall"
+            "Update interval": "Aktualisierungsintervall",
+            "Update values": "Aktualisiere Werte"
         }
     }
 }

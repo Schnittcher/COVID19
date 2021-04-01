@@ -13,7 +13,8 @@
             "Cases per 100k": "Fälle pro 100k Einwohner",
             "Deaths": "Gesamte Todesfälle",
             "Seconds": "Sekunden",
-            "Update interval": "Aktualisierungsintervall"
+            "Update interval": "Aktualisierungsintervall",
+            "Update values": "Aktualisiere Werte"
         }
     }
 }
