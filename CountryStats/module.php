@@ -52,7 +52,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
                 $this->SetValue('recovered', $data['recovered']);
                 $this->SetValue('weekIncidence', $data['weekIncidence']);
                 $this->SetValue('casesPer100k', $data['casesPer100k']);
-                $this->SetValue('casesPerWeek', $data['cases']);
+                $this->SetValue('casesPerWeek', $data['casesPerWeek']);
                 $this->SetValue('r', $data['r']['value']);
 
                 $this->SetValue('last_update', date('U', strtotime($data['meta']['lastUpdate'])));
