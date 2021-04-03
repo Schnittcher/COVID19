@@ -81,7 +81,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             }
         }
 
-        public function updateDistricts($BL_ID)
+        private function updateDistricts($BL_ID)
         {
             $districts = $this->getDistricts($BL_ID);
             $Options = [];
@@ -106,7 +106,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             return json_encode($Form);
         }
 
-        private function updateDistrictStats()
+        public function updateDistrictStats()
         {
             $where = "GEN = '" . $this->ReadPropertyString('district') . "'";
             $outFields = 'county,cases7_per_100k_txt,BL_ID,GEN,last_update,cases7_bl_per_100k,cases7_lk,death7_lk,cases,cases_per_population,cases_per_100k,deaths,death_rate,cases7_bl,death7_bl';
