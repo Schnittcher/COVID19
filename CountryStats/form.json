@@ -1,8 +1,22 @@
 {
     "elements": [
-        { "type": "Label", "caption": "Update interval"},
-        { "type": "NumberSpinner", "name": "UpdateInterval", "caption": "Seconds", "suffix": "Seconds"}
+        {
+            "type": "Label",
+            "caption": "Update interval"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "UpdateInterval",
+            "caption": "Seconds",
+            "suffix": "Seconds"
+        }
     ],
-    "actions": [],
+    "actions": [
+        {
+            "type": "Button",
+            "caption": "Update values",
+            "OnClick": "COVID_updateCountryStats($id);"
+        }
+    ],
     "status": []
 }

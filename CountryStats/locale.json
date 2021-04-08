@@ -12,7 +12,8 @@
             "Cases per Week": "Fälle pro Woche",
             "Cases per 100k": "Fälle pro 100k Einwohner",
             "Seconds": "Sekunden",
-            "Update interval": "Aktualisierungsintervall"
+            "Update interval": "Aktualisierungsintervall",
+            "Update values": "Aktualisiere Werte"
         }
     }
 }

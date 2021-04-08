@@ -67,10 +67,21 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
                 $this->updateDistricts($this->ReadPropertyInteger('province'));
             }
 
+            if (IPS_GetKernelRunlevel() == KR_READY) {
+                $this->updateDistrictStats();
+            }
+
             $this->SetTimerInterval('COVID_DistrictUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
         }
+        
+        public function RequestAction($Ident, $Value)
+        {
+            if ($Ident == 'updateDistricts') {
+                return $this->updateDistricts($Value);
+            }
+        }
 
-        public function updateDistricts($BL_ID)
+        private function updateDistricts($BL_ID)
         {
             $districts = $this->getDistricts($BL_ID);
             $Options = [];
