@@ -97,6 +97,10 @@
                     "value": "LK"
                 },
                 {
+                    "caption": "Region",
+                    "value": "Region"
+                },
+                {
                     "caption": "City",
                     "value": "SK"
                 }
