@@ -73,27 +73,11 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
 
             $this->SetTimerInterval('COVID_DistrictUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
         }
-        
+
         public function RequestAction($Ident, $Value)
         {
             if ($Ident == 'updateDistricts') {
                 return $this->updateDistricts($Value);
-            }
-        }
-
-        private function updateDistricts($BL_ID)
-        {
-            $districts = $this->getDistricts($BL_ID);
-            $Options = [];
-
-            if ($BL_ID != 0) {
-                foreach ($districts as $district) {
-                    $Option['caption'] = $district['attributes']['GEN'];
-                    $Option['value'] = $district['attributes']['GEN'];
-                    array_push($Options, $Option);
-                }
-                $this->UpdateFormField('district', 'options', json_encode($Options));
-                $this->SetBuffer('districtOptions', json_encode($Options));
             }
         }
 
@@ -113,7 +97,9 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             $data = $this->DistrictRequest($where, $outFields);
 
             foreach ($data as $item) {
-                if (substr($item['attributes']['county'], 0, 2) == $this->ReadPropertyString('LKSK')) {
+                $SKLK = explode(' ', $item['attributes']['county']);
+
+                if ($SKLK[0] == $this->ReadPropertyString('LKSK')) {
                     if ($this->ReadPropertyBoolean('cases7_per_100k_txt')) {
                         $this->SetValue('cases7_per_100k_txt', $item['attributes']['cases7_per_100k_txt']);
                     }
@@ -151,6 +137,22 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
                     }
                     $this->SetValue('last_update', $item['attributes']['last_update']);
                 }
+            }
+        }
+
+        private function updateDistricts($BL_ID)
+        {
+            $districts = $this->getDistricts($BL_ID);
+            $Options = [];
+
+            if ($BL_ID != 0) {
+                foreach ($districts as $district) {
+                    $Option['caption'] = $district['attributes']['GEN'];
+                    $Option['value'] = $district['attributes']['GEN'];
+                    array_push($Options, $Option);
+                }
+                $this->UpdateFormField('district', 'options', json_encode($Options));
+                $this->SetBuffer('districtOptions', json_encode($Options));
             }
         }
     }
