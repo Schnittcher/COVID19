@@ -126,7 +126,7 @@
         {
             "type": "Button",
             "caption": "Update values",
-            "OnClick": "COVID_updateProvinceStats($id);"
+            "onClick": "COVID_updateProvinceStats($id);"
         }
     ],
     "status": []
