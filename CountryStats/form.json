@@ -15,7 +15,7 @@
         {
             "type": "Button",
             "caption": "Update values",
-            "OnClick": "COVID_updateCountryStats($id);"
+            "onClick": "COVID_updateCountryStats($id);"
         }
     ],
     "status": []

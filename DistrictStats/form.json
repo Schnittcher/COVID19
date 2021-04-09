@@ -163,7 +163,7 @@
         {
             "type": "Button",
             "caption": "Update values",
-            "OnClick": "COVID_updateDistrictStats($id);"
+            "onClick": "COVID_updateDistrictStats($id);"
         }
     ],
     "status": []
