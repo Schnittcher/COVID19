@@ -12,7 +12,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             parent::Create();
 
             $this->RegisterPropertyInteger('UpdateInterval', 10);
-            $this->RegisterPropertyString('URL','https://api.corona-zahlen.org')
+            $this->RegisterPropertyString('URL','https://api.corona-zahlen.org');
             $this->RegisterTimer('COVID_CountryUpdateStats', 0, 'COVID_updateCountryStats($_IPS[\'TARGET\']);');
         }
 
