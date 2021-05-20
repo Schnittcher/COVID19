@@ -12,6 +12,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             parent::Create();
 
             $this->RegisterPropertyInteger('UpdateInterval', 10);
+            $this->RegisterPropertyString('URL','https://api.corona-zahlen.org')
             $this->RegisterTimer('COVID_CountryUpdateStats', 0, 'COVID_updateCountryStats($_IPS[\'TARGET\']);');
         }
 
@@ -47,7 +48,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
 
         public function updateCountryStats()
         {
-            $dataJSON = file_get_contents('https://api.corona-zahlen.org/germany');
+            $dataJSON = file_get_contents($this->ReadPropertyString('URL').'/germany');
             $data = json_decode($dataJSON, true);
 
             if (array_key_exists('cases', $data)) {

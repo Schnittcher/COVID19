@@ -1,5 +1,9 @@
 {
     "elements": [
+        { "type": "ValidationTextBox",
+            "name": "URL",
+            "caption": "Corona API URL"
+        },
         {
             "type": "Label",
             "caption": "Update interval"
