@@ -12,7 +12,7 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             parent::Create();
 
             $this->RegisterPropertyInteger('UpdateInterval', 10);
-            $this->RegisterPropertyString('URL','https://api.corona-zahlen.org');
+            $this->RegisterPropertyString('URL', 'https://api.corona-zahlen.org');
             $this->RegisterTimer('COVID_CountryUpdateStats', 0, 'COVID_updateCountryStats($_IPS[\'TARGET\']);');
         }
 
@@ -58,7 +58,8 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
                 $this->SetValue('weekIncidence', $data['weekIncidence']);
                 $this->SetValue('casesPer100k', $data['casesPer100k']);
                 $this->SetValue('casesPerWeek', $data['casesPerWeek']);
-                $this->SetValue('r', $data['r']['value']);
+//                $this->SetValue('r', $data['r']['value']);
+                $this->SetValue('r', $data['r']['rValue7Days']['value']);
 
                 $this->SetValue('last_update', date('U', strtotime($data['meta']['lastUpdate'])));
             }
