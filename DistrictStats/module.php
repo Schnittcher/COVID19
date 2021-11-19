@@ -87,6 +87,7 @@ declare(strict_types=1);
                 $meta = $JSON['meta'];
 
                 if (array_key_exists('cases', $data)) {
+                    $this->SetValue('District', $data['county']);
                     $this->SetValue('population', $data['population']);
                     $this->SetValue('cases', $data['cases']);
                     $this->SetValue('deaths', $data['deaths']);
