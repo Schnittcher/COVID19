@@ -37,13 +37,14 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             $this->RegisterVariableFloat('weekIncidence', $this->Translate('7 Days Incidence'), '', 4);
             $this->RegisterVariableFloat('casesPer100k', $this->Translate('Cases per 100k'), '', 5);
             $this->RegisterVariableInteger('casesPerWeek', $this->Translate('Cases per Week'), '', 6);
-            $this->RegisterVariableFloat('r', $this->Translate('R Value'), '', 7);
-            $this->RegisterVariableFloat('r4Days', $this->Translate('R Value 4 Days'), '', 8);
-            $this->RegisterVariableFloat('r7Days', $this->Translate('R Value 7 Days'), '', 9);
 
-            $this->RegisterVariableFloat('deltaCases', $this->Translate('Delta Cases'), '', 10);
-            $this->RegisterVariableFloat('deltaDeaths', $this->Translate('Delta Deaths'), '', 11);
-            $this->RegisterVariableFloat('deltaRecovered', $this->Translate('Delta Recovered'), '', 12);
+            $this->RegisterVariableFloat('deltaCases', $this->Translate('Delta Cases'), '', 7);
+            $this->RegisterVariableFloat('deltaDeaths', $this->Translate('Delta Deaths'), '', 8);
+            $this->RegisterVariableFloat('deltaRecovered', $this->Translate('Delta Recovered'), '', 9);
+
+            $this->RegisterVariableFloat('r', $this->Translate('R Value'), '', 10);
+            $this->RegisterVariableFloat('r4Days', $this->Translate('R Value 4 Days'), '', 11);
+            $this->RegisterVariableFloat('r7Days', $this->Translate('R Value 7 Days'), '', 12);
 
             $this->RegisterVariableFloat('hospitalizationCases7Days', $this->Translate('Hospitalization Cases 7 Days'), '', 13);
             $this->RegisterVariableFloat('hospitalizationIncidence7Days', $this->Translate('Hospitalization Incidence 7 Days'), '', 14);
@@ -67,13 +68,14 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
                 $this->SetValue('weekIncidence', $data['weekIncidence']);
                 $this->SetValue('casesPer100k', $data['casesPer100k']);
                 $this->SetValue('casesPerWeek', $data['casesPerWeek']);
-                $this->SetValue('r', $data['r']['value']);
-                $this->SetValue('r4Days', $data['r']['rValue4Days']['value']);
-                $this->SetValue('r7Days', $data['r']['rValue7Days']['value']);
 
                 $this->SetValue('deltaCases', $data['delta']['cases']);
                 $this->SetValue('deltaDeaths', $data['delta']['deaths']);
                 $this->SetValue('deltaRecovered', $data['delta']['recovered']);
+
+                $this->SetValue('r', $data['r']['value']);
+                $this->SetValue('r4Days', $data['r']['rValue4Days']['value']);
+                $this->SetValue('r7Days', $data['r']['rValue7Days']['value']);
 
                 $this->SetValue('hospitalizationCases7Days', $data['hospitalization']['cases7Days']);
                 $this->SetValue('hospitalizationIncidence7Days', $data['hospitalization']['incidence7Days']);

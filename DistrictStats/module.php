@@ -2,30 +2,15 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../libs/COVID19Helper.php';
     class DistrictStats extends IPSModule
     {
-        use COVID19Helper;
         public function Create()
         {
             //Never delete this line!
             parent::Create();
-            $this->RegisterPropertyInteger('province', 0);
+            $this->RegisterPropertyString('URL', 'https://api.corona-zahlen.org');
+            $this->RegisterPropertyString('province', '-');
             $this->RegisterPropertyString('district', '-');
-            $this->RegisterPropertyString('LKSK', 'LK');
-            $this->RegisterPropertyBoolean('cases7_per_100k_txt', true);
-            $this->RegisterPropertyBoolean('cases7_lk', true);
-            $this->RegisterPropertyBoolean('death7_lk', true);
-
-            $this->RegisterPropertyBoolean('cases', true);
-            $this->RegisterPropertyBoolean('cases_per_population', true);
-            $this->RegisterPropertyBoolean('cases_per_100k', true);
-            $this->RegisterPropertyBoolean('deaths', true);
-            $this->RegisterPropertyBoolean('death_rate', true);
-
-            $this->RegisterPropertyBoolean('cases7_bl_per_100k', false);
-            $this->RegisterPropertyBoolean('cases7_bl', false);
-            $this->RegisterPropertyBoolean('death7_bl', false);
 
             $this->SetBuffer('districtOptions', '{}');
 
@@ -45,26 +30,24 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
             parent::ApplyChanges();
 
             $this->RegisterVariableString('District', $this->Translate('District'), '', 0);
-            $this->SetValue('District', $this->ReadPropertyString('district'));
-            $this->RegisterVariableString('last_update', $this->Translate('Last Update'), '', 12);
 
-            $this->MaintainVariable('cases7_per_100k_txt', $this->Translate('7 Days Incidence'), 2, '', 1, $this->ReadPropertyBoolean('cases7_per_100k_txt') == true);
-            $this->MaintainVariable('cases7_lk', $this->Translate('Cases last 7 Days'), 2, '', 2, $this->ReadPropertyBoolean('cases7_lk') == true);
-            $this->MaintainVariable('death7_lk', $this->Translate('Deaths last 7 Days'), 2, '', 3, $this->ReadPropertyBoolean('death7_lk') == true);
+            $this->RegisterVariableInteger('population', $this->Translate('Population'), '', 1);
+            $this->RegisterVariableInteger('cases', $this->Translate('Cases'), '', 2);
+            $this->RegisterVariableInteger('deaths', $this->Translate('Deaths'), '', 3);
+            $this->RegisterVariableInteger('casesPerWeek', $this->Translate('Cases per Week'), '', 4);
+            $this->RegisterVariableInteger('deathsPerWeek', $this->Translate('Deaths per Week'), '', 5);
+            $this->RegisterVariableInteger('recovered', $this->Translate('Recovered'), '', 6);
+            $this->RegisterVariableFloat('weekIncidence', $this->Translate('7 Days Incidence'), '', 7);
+            $this->RegisterVariableFloat('casesPer100k', $this->Translate('Cases per 100k'), '', 8);
 
-            $this->MaintainVariable('cases', $this->Translate('Total cases'), 2, '', 4, $this->ReadPropertyBoolean('cases') == true);
-            $this->MaintainVariable('cases_per_population', $this->Translate('Cases per population'), 2, '', 5, $this->ReadPropertyBoolean('cases_per_population') == true);
-            $this->MaintainVariable('cases_per_100k', $this->Translate('Cases per 100k'), 2, '', 6, $this->ReadPropertyBoolean('cases_per_100k') == true);
+            $this->RegisterVariableFloat('deltaCases', $this->Translate('Delta Cases'), '', 9);
+            $this->RegisterVariableFloat('deltaDeaths', $this->Translate('Delta Deaths'), '', 10);
+            $this->RegisterVariableFloat('deltaRecovered', $this->Translate('Delta Recovered'), '', 11);
 
-            $this->MaintainVariable('deaths', $this->Translate('Deaths'), 2, '', 7, $this->ReadPropertyBoolean('deaths') == true);
-            $this->MaintainVariable('death_rate', $this->Translate('Death rate'), 2, '', 8, $this->ReadPropertyBoolean('death_rate') == true);
+            $this->RegisterVariableInteger('last_update', $this->Translate('Last Update'), '~UnixTimestamp', 15);
 
-            $this->MaintainVariable('cases7_bl_per_100k', $this->Translate('7 Days Incidence BL'), 2, '', 9, $this->ReadPropertyBoolean('cases7_bl_per_100k') == true);
-            $this->MaintainVariable('cases7_bl', $this->Translate('Cases last 7 Days BL'), 2, '', 10, $this->ReadPropertyBoolean('cases7_bl') == true);
-            $this->MaintainVariable('death7_bl', $this->Translate('Deaths last 7 Days BL'), 2, '', 11, $this->ReadPropertyBoolean('death7_bl') == true);
-
-            if ($this->ReadPropertyInteger('province') != 0) {
-                $this->updateDistricts($this->ReadPropertyInteger('province'));
+            if ($this->ReadPropertyString('province') != '-') {
+                $this->updateDistricts($this->ReadPropertyString('province'));
             }
 
             if (IPS_GetKernelRunlevel() == KR_READY) {
@@ -84,71 +67,63 @@ require_once __DIR__ . '/../libs/COVID19Helper.php';
         public function GetConfigurationForm()
         {
             $Form = json_decode(file_get_contents(__DIR__ . '/form.json'), true);
-            $DistrictOptions = json_decode($this->GetBuffer('districtOptions'), true);
-            $Form['elements'][1]['options'] = $DistrictOptions;
 
+            $DistrictOptions = json_decode($this->GetBuffer('districtOptions'), true);
+
+            if (!empty($DistrictOptions)) {
+                $Form['elements'][2]['options'] = $DistrictOptions;
+            }
             return json_encode($Form);
         }
 
         public function updateDistrictStats()
         {
-            $where = "GEN = '" . $this->ReadPropertyString('district') . "'";
-            $outFields = 'county,cases7_per_100k_txt,BL_ID,GEN,last_update,cases7_bl_per_100k,cases7_lk,death7_lk,cases,cases_per_population,cases_per_100k,deaths,death_rate,cases7_bl,death7_bl';
-            $data = $this->DistrictRequest($where, $outFields);
+            if ($this->ReadPropertyString('district') != '-') {
+                $dataJSON = file_get_contents($this->ReadPropertyString('URL') . '/districts/' . $this->ReadPropertyString('district'));
+                $this->SendDebug('Data :: JSON', $dataJSON, 0);
+                $JSON = json_decode($dataJSON, true);
 
-            foreach ($data as $item) {
-                $SKLK = explode(' ', $item['attributes']['county']);
+                $data = $JSON['data'][$this->ReadPropertyString('district')];
+                $meta = $JSON['meta'];
 
-                if ($SKLK[0] == $this->ReadPropertyString('LKSK')) {
-                    if ($this->ReadPropertyBoolean('cases7_per_100k_txt')) {
-                        $this->SetValue('cases7_per_100k_txt', $item['attributes']['cases7_per_100k_txt']);
-                    }
-                    if ($this->ReadPropertyBoolean('cases7_lk')) {
-                        $this->SetValue('cases7_lk', $item['attributes']['cases7_lk']);
-                    }
-                    if ($this->ReadPropertyBoolean('death7_lk')) {
-                        $this->SetValue('death7_lk', $item['attributes']['death7_lk']);
-                    }
+                if (array_key_exists('cases', $data)) {
+                    $this->SetValue('population', $data['population']);
+                    $this->SetValue('cases', $data['cases']);
+                    $this->SetValue('deaths', $data['deaths']);
+                    $this->SetValue('casesPerWeek', $data['casesPerWeek']);
+                    $this->SetValue('deathsPerWeek', $data['deathsPerWeek']);
+                    $this->SetValue('recovered', $data['recovered']);
+                    $this->SetValue('weekIncidence', $data['weekIncidence']);
+                    $this->SetValue('casesPer100k', $data['casesPer100k']);
 
-                    if ($this->ReadPropertyBoolean('cases')) {
-                        $this->SetValue('cases', $item['attributes']['cases']);
-                    }
-                    if ($this->ReadPropertyBoolean('cases_per_population')) {
-                        $this->SetValue('cases_per_population', round($item['attributes']['cases_per_population'], 2));
-                    }
-                    if ($this->ReadPropertyBoolean('cases_per_100k')) {
-                        $this->SetValue('cases_per_100k', round($item['attributes']['cases_per_100k'], 2));
-                    }
-                    if ($this->ReadPropertyBoolean('deaths')) {
-                        $this->SetValue('deaths', $item['attributes']['deaths']);
-                    }
-                    if ($this->ReadPropertyBoolean('death_rate')) {
-                        $this->SetValue('death_rate', round($item['attributes']['death_rate'], 2));
-                    }
-                    if ($this->ReadPropertyBoolean('cases7_bl_per_100k')) {
-                        $this->SetValue('cases7_bl_per_100k', $item['attributes']['cases7_bl_per_100k']);
-                    }
-                    if ($this->ReadPropertyBoolean('cases7_bl')) {
-                        $this->SetValue('cases7_bl', $item['attributes']['cases7_bl']);
-                    }
+                    $this->SetValue('deltaCases', $data['delta']['cases']);
+                    $this->SetValue('deltaDeaths', $data['delta']['deaths']);
+                    $this->SetValue('deltaRecovered', $data['delta']['recovered']);
 
-                    if ($this->ReadPropertyBoolean('death7_bl')) {
-                        $this->SetValue('death7_bl', $item['attributes']['death7_bl']);
-                    }
-                    $this->SetValue('last_update', $item['attributes']['last_update']);
+                    $this->SetValue('last_update', date('U', strtotime($meta['lastUpdate'])));
                 }
             }
         }
 
-        private function updateDistricts($BL_ID)
+        private function updateDistricts($Province)
         {
-            $districts = $this->getDistricts($BL_ID);
+            $dataJSON = file_get_contents($this->ReadPropertyString('URL') . '/districts');
+            $this->SendDebug('Data :: JSON', $dataJSON, 0);
+
+            $Districts = json_decode($dataJSON, true)['data'];
+
             $Options = [];
 
-            if ($BL_ID != 0) {
-                foreach ($districts as $district) {
-                    $Option['caption'] = $district['attributes']['GEN'];
-                    $Option['value'] = $district['attributes']['GEN'];
+            $Option['caption'] = '-';
+            $Option['value'] = '-';
+            array_push($Options, $Option);
+
+            $this->UpdateFormField('district', 'options', json_encode($Options));
+
+            foreach ($Districts as $key => $District) {
+                if ($District['stateAbbreviation'] == $this->ReadPropertyString('province')) {
+                    $Option['caption'] = $District['name'] . ' (' . $District['county'] . ')';
+                    $Option['value'] = strval($District['ags']);
                     array_push($Options, $Option);
                 }
                 $this->UpdateFormField('district', 'options', json_encode($Options));

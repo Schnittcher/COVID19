@@ -1,5 +1,9 @@
 {
     "elements": [
+        { "type": "ValidationTextBox",
+            "name": "URL",
+            "caption": "Corona API URL"
+        },
         {
             "type": "Select",
             "name": "province",
@@ -11,103 +15,67 @@
                 },
                 {
                     "caption": "Schleswig-Holstein",
-                    "value": "Schleswig-Holstein"
+                    "value": "SH"
                 },
                 {
                     "caption": "Hamburg",
-                    "value": "Hamburg"
+                    "value": "HH"
                 },
                 {
                     "caption": "Niedersachsen",
-                    "value": "Niedersachsen"
+                    "value": "NI"
                 },
                 {
                     "caption": "Bremen",
-                    "value": "Bremen"
+                    "value": "HB"
                 },
                 {
                     "caption": "Nordrhein-Westfalen",
-                    "value": "Nordrhein-Westfalen"
+                    "value": "NW"
                 },
                 {
                     "caption": "Hessen",
-                    "value": "Hessen"
+                    "value": "HE"
                 },
                 {
                     "caption": "Rheinland-Pfalz",
-                    "value": "Rheinland-Pfalz"
+                    "value": "RP"
                 },
                 {
                     "caption": "Baden-Württemberg",
-                    "value": "Baden-Württemberg"
+                    "value": "BW"
                 },
                 {
                     "caption": "Bayern",
-                    "value": "Bayern"
+                    "value": "BY"
                 },
                 {
                     "caption": "Saarland",
-                    "value": "Saarland"
+                    "value": "SL"
                 },
                 {
                     "caption": "Berlin",
-                    "value": "Berlin"
+                    "value": "BE"
                 },
                 {
                     "caption": "Brandenburg",
-                    "value": "Brandenburg"
+                    "value": "BB"
                 },
                 {
                     "caption": "Mecklenburg-Vorpommern",
-                    "value": "Mecklenburg-Vorpommern"
+                    "value": "MV"
                 },
                 {
                     "caption": "Sachsen",
-                    "value": "Sachsen"
+                    "value": "SN"
                 },
                 {
                     "caption": "Sachsen-Anhalt",
-                    "value": "Sachsen-Anhalt"
+                    "value": "ST"
                 },
                 {
                     "caption": "Thüringen",
-                    "value": "Thüringen"
-                }
-            ]
-        },
-        {
-            "type": "ExpansionPanel",
-            "caption": "Statitics",
-            "items": [
-                {
-                    "type": "CheckBox",
-                    "name": "cases7_bl_per_100k",
-                    "caption": "7 Days Incidence"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "cases7_bl",
-                    "caption": "Cases last 7 Days"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "death7_bl",
-                    "caption": "Deaths last 7 Days"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "Fallzahl",
-                    "caption": "Total cases"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "faelle_100000_EW",
-                    "caption": "Cases per 100k"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "Death",
-                    "caption": "Deaths"
+                    "value": "TH"
                 }
             ]
         },

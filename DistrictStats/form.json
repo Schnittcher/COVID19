@@ -1,5 +1,10 @@
 {
     "elements": [
+        { "type": "ValidationTextBox",
+            "name": "URL",
+            "caption": "Corona API URL"
+        },
+
         {
             "type": "Select",
             "name": "province",
@@ -8,71 +13,71 @@
             "options": [
                 {
                     "caption": "-",
-                    "value": 0
+                    "value": "-"
                 },
                 {
                     "caption": "Schleswig-Holstein",
-                    "value": 1
+                    "value": "SH"
                 },
                 {
                     "caption": "Hamburg",
-                    "value": 2
+                    "value": "HH"
                 },
                 {
                     "caption": "Niedersachsen",
-                    "value": 3
+                    "value": "NI"
                 },
                 {
                     "caption": "Bremen",
-                    "value": 4
+                    "value": "HB"
                 },
                 {
                     "caption": "Nordrhein-Westfalen",
-                    "value": 5
+                    "value": "NW"
                 },
                 {
                     "caption": "Hessen",
-                    "value": 6
+                    "value": "HE"
                 },
                 {
                     "caption": "Rheinland-Pfalz",
-                    "value": 7
+                    "value": "RP"
                 },
                 {
                     "caption": "Baden-Württemberg",
-                    "value": 8
+                    "value": "BW"
                 },
                 {
                     "caption": "Bayern",
-                    "value": 9
+                    "value": "BY"
                 },
                 {
                     "caption": "Saarland",
-                    "value": 10
+                    "value": "SL"
                 },
                 {
                     "caption": "Berlin",
-                    "value": 11
+                    "value": "BE"
                 },
                 {
                     "caption": "Brandenburg",
-                    "value": 12
+                    "value": "BB"
                 },
                 {
                     "caption": "Mecklenburg-Vorpommern",
-                    "value": 13
+                    "value": "MV"
                 },
                 {
                     "caption": "Sachsen",
-                    "value": 14
+                    "value": "SN"
                 },
                 {
                     "caption": "Sachsen-Anhalt",
-                    "value": 15
+                    "value": "ST"
                 },
                 {
                     "caption": "Thüringen",
-                    "value": 16
+                    "value": "TH"
                 }
             ]
         },
@@ -84,71 +89,6 @@
                 {
                     "caption": "-",
                     "value": "-"
-                }
-            ]
-        },
-        {
-            "type": "Select",
-            "name": "LKSK",
-            "caption": "District / City",
-            "options": [
-                {
-                    "caption": "District",
-                    "value": "LK"
-                },
-                {
-                    "caption": "Region",
-                    "value": "Region"
-                },
-                {
-                    "caption": "City",
-                    "value": "SK"
-                }
-            ]
-        },
-        {
-            "type": "ExpansionPanel",
-            "caption": "Statitics",
-            "items": [
-                {
-                    "type": "CheckBox",
-                    "name": "cases7_per_100k_txt",
-                    "caption": "7 Days Incidence"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "cases7_lk",
-                    "caption": "Cases last 7 Days"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "death7_lk",
-                    "caption": "Deaths last 7 Days"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "cases",
-                    "caption": "Total cases"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "cases_per_population",
-                    "caption": "Cases per population"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "cases_per_100k",
-                    "caption": "Cases per 100k"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "deaths",
-                    "caption": "Deaths"
-                },
-                {
-                    "type": "CheckBox",
-                    "name": "death_rate",
-                    "caption": "Death rate"
                 }
             ]
         },
