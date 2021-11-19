@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Province": "Bundesland",
             "Country": "Land",
             "District": "Landkreis",
             "Last Update": "Letzte Aktualisierung",
