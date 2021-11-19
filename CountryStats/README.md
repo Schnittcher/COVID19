@@ -9,7 +9,8 @@ Dieses Modul zeigt die Statistiken von Deutschland an.
 
 | Feld           | Beschreibung                                                    |
 | -------------- | --------------------------------------------------------------- |
-| UpdateInterval | Hier wird angegeben, wie oft die Werte abgefragt werden sollen. |
+| Coronas API URL | Hier wird die URL der Corona API angegeben. |
+| Aktualisierungsintervall | Hier wird angegeben, wie oft die Werte abgefragt werden sollen. |
 
 ## 2. Funktionen
 Es gibt zur Zeit keine öffentlichen Funktionen.

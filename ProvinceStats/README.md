@@ -9,8 +9,9 @@ Dieses Modul zeigt die Statistiken eines Bundeslandes an.
 
 | Feld        | Beschreibung                                                            |
 | ----------- | ----------------------------------------------------------------------- |
+| Coronas API URL | Hier wird die URL der Corona API angegeben. |
 | Bundesland  | Hier wird das Bundesland ausgewählt, welches angezeigt werden soll.     |
-| Statistiken | Hier werden die Statistiken ausgewählt, welche angezeigt werden sollen. |
+| Aktualisierungsintervall | Hier wird angegeben, wie oft die Werte abgefragt werden sollen. |
 
 ## 2. Funktionen
 Es gibt zur Zeit keine öffentlichen Funktionen.
