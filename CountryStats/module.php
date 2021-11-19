@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../libs/COVID19Helper.php';
     class CountryStats extends IPSModule
     {
-        use COVID19Helper;
         public function Create()
         {
             //Never delete this line!
