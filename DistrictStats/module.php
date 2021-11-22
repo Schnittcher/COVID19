@@ -8,8 +8,6 @@ declare(strict_types=1);
         {
             //Never delete this line!
             parent::Create();
-
-            $this->RegisterPropertyBoolean('Active', true);
             $this->RegisterPropertyString('URL', 'https://api.corona-zahlen.org');
             $this->RegisterPropertyString('province', '-');
             $this->RegisterPropertyString('district', '-');
@@ -56,13 +54,7 @@ declare(strict_types=1);
                 $this->updateDistrictStats();
             }
 
-            if ($this->ReadPropertyBoolean('Active')) {
-                $this->SetTimerInterval('COVID_DistrictUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
-                $this->SetStatus(102);
-            } else {
-                $this->SetTimerInterval('COVID_DistrictUpdateStats', 0);
-                $this->SetStatus(104);
-            }
+            $this->SetTimerInterval('COVID_DistrictUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
         }
 
         public function RequestAction($Ident, $Value)
@@ -79,7 +71,7 @@ declare(strict_types=1);
             $DistrictOptions = json_decode($this->GetBuffer('districtOptions'), true);
 
             if (!empty($DistrictOptions)) {
-                $Form['elements'][3]['options'] = $DistrictOptions;
+                $Form['elements'][2]['options'] = $DistrictOptions;
             }
             return json_encode($Form);
         }
@@ -110,8 +102,6 @@ declare(strict_types=1);
                     $this->SetValue('deltaRecovered', $data['delta']['recovered']);
 
                     $this->SetValue('last_update', date('U', strtotime($meta['lastUpdate'])));
-                } else {
-                    $this->SetStaus(200);
                 }
             }
         }
