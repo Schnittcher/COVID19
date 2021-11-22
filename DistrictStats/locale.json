@@ -1,6 +1,10 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
+            "Instance is active": "Instanz ist aktiv",
+            "Instance Error": "Instanz Error",
+            "Instance is inactive": "Instanz ist inaktiv",
             "Province": "Bundesland",
             "Country": "Land",
             "District": "Landkreis",

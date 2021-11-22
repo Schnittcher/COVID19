@@ -9,6 +9,7 @@ declare(strict_types=1);
             //Never delete this line!
             parent::Create();
 
+            $this->RegisterPropertyBoolean('Active', true);
             $this->RegisterPropertyInteger('UpdateInterval', 10);
             $this->RegisterPropertyString('URL', 'https://api.corona-zahlen.org');
             $this->RegisterTimer('COVID_CountryUpdateStats', 0, 'COVID_updateCountryStats($_IPS[\'TARGET\']);');
@@ -51,7 +52,13 @@ declare(strict_types=1);
                 $this->updateCountryStats();
             }
 
-            $this->SetTimerInterval('COVID_CountryUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
+            if ($this->ReadPropertyBoolean('Active')) {
+                $this->SetTimerInterval('COVID_CountryUpdateStats', $this->ReadPropertyInteger('UpdateInterval') * 1000);
+                $this->SetStatus(102);
+            } else {
+                $this->SetTimerInterval('COVID_CountryUpdateStats', 0);
+                $this->SetStatus(104);
+            }
         }
 
         public function updateCountryStats()
@@ -79,6 +86,8 @@ declare(strict_types=1);
                 $this->SetValue('hospitalizationIncidence7Days', $data['hospitalization']['incidence7Days']);
 
                 $this->SetValue('last_update', date('U', strtotime($data['meta']['lastUpdate'])));
+            } else {
+                $this->SetStaus(200);
             }
         }
     }
