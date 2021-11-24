@@ -138,7 +138,7 @@
         {
             "code": 102,
             "icon": "active",
-            "caption": "Instance active"
+            "caption": "Instance is active"
         },
         {
             "code": 200,
@@ -148,7 +148,7 @@
         {
             "code": 104,
             "icon": "inactive",
-            "caption": "Instance inactive"
+            "caption": "Instance is inactive"
         }
     ]
 }
