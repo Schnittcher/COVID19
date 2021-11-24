@@ -92,7 +92,7 @@ declare(strict_types=1);
 
                     $this->SetValue('last_update', date('U', strtotime($meta['lastUpdate'])));
                 } else {
-                    $this->SetStaus(200);
+                    $this->SetStatus(200);
                 }
             }
         }
