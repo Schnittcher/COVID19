@@ -121,7 +121,14 @@ declare(strict_types=1);
             $dataJSON = file_get_contents($this->ReadPropertyString('URL') . '/districts');
             $this->SendDebug('Data :: JSON', $dataJSON, 0);
 
-            $Districts = json_decode($dataJSON, true)['data'];
+            $data = json_decode($dataJSON, true);
+
+            if (array_key_exists('error', $data)) {
+                $this->SetStatus(201);
+                return;
+            }
+
+            $Districts = $data['data'];
 
             $Options = [];
 
