@@ -59,7 +59,6 @@ declare(strict_types=1);
                 $this->SetTimerInterval('COVID_ProvinceUpdateStats', 0);
                 $this->SetStatus(104);
             }
-            
         }
 
         public function updateProvinceStats()
@@ -69,28 +68,31 @@ declare(strict_types=1);
                 $this->SendDebug('Data :: JSON', $dataJSON, 0);
                 $JSON = json_decode($dataJSON, true);
 
-                $data = $JSON['data'][$this->ReadPropertyString('province')];
-                $meta = $JSON['meta'];
+                if (array_key_exists('data', $JSON)) {
+                    $data = $JSON['data'][$this->ReadPropertyString('province')];
+                    if (array_key_exists('cases', $data)) {
+                        $this->SetValue('Province', $data['name']);
+                        $this->SetValue('population', $data['population']);
+                        $this->SetValue('cases', $data['cases']);
+                        $this->SetValue('deaths', $data['deaths']);
+                        $this->SetValue('casesPerWeek', $data['casesPerWeek']);
+                        $this->SetValue('deathsPerWeek', $data['deathsPerWeek']);
+                        $this->SetValue('recovered', $data['recovered']);
+                        $this->SetValue('weekIncidence', $data['weekIncidence']);
+                        $this->SetValue('casesPer100k', $data['casesPer100k']);
 
-                if (array_key_exists('cases', $data)) {
-                    $this->SetValue('Province', $data['name']);
-                    $this->SetValue('population', $data['population']);
-                    $this->SetValue('cases', $data['cases']);
-                    $this->SetValue('deaths', $data['deaths']);
-                    $this->SetValue('casesPerWeek', $data['casesPerWeek']);
-                    $this->SetValue('deathsPerWeek', $data['deathsPerWeek']);
-                    $this->SetValue('recovered', $data['recovered']);
-                    $this->SetValue('weekIncidence', $data['weekIncidence']);
-                    $this->SetValue('casesPer100k', $data['casesPer100k']);
+                        $this->SetValue('deltaCases', $data['delta']['cases']);
+                        $this->SetValue('deltaDeaths', $data['delta']['deaths']);
+                        $this->SetValue('deltaRecovered', $data['delta']['recovered']);
 
-                    $this->SetValue('deltaCases', $data['delta']['cases']);
-                    $this->SetValue('deltaDeaths', $data['delta']['deaths']);
-                    $this->SetValue('deltaRecovered', $data['delta']['recovered']);
+                        $this->SetValue('hospitalizationCases7Days', $data['hospitalization']['cases7Days']);
+                        $this->SetValue('hospitalizationIncidence7Days', $data['hospitalization']['incidence7Days']);
 
-                    $this->SetValue('hospitalizationCases7Days', $data['hospitalization']['cases7Days']);
-                    $this->SetValue('hospitalizationIncidence7Days', $data['hospitalization']['incidence7Days']);
-
-                    $this->SetValue('last_update', date('U', strtotime($meta['lastUpdate'])));
+                        if (array_key_exists('meta', $JSON)) {
+                            $meta = $JSON['meta'];
+                            $this->SetValue('last_update', date('U', strtotime($meta['lastUpdate'])));
+                        }
+                    }
                 } else {
                     $this->SetStatus(200);
                 }
