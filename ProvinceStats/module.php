@@ -49,7 +49,10 @@ declare(strict_types=1);
             $this->RegisterVariableFloat('hospitalizationIncidence7Days', $this->Translate('Hospitalization Incidence 7 Days'), '', 13);
 
             if (IPS_GetKernelRunlevel() == KR_READY) {
-                $this->updateProvinceStats();
+                if (!$this->updateProvinceStats()) {
+                    $this->SetStatus(200);
+                    return;
+                }
             }
 
             if ($this->ReadPropertyBoolean('Active')) {
@@ -94,7 +97,7 @@ declare(strict_types=1);
                         }
                     }
                 } else {
-                    $this->SetStatus(200);
+                    return false;
                 }
             }
         }
