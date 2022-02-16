@@ -53,7 +53,10 @@ declare(strict_types=1);
             }
 
             if (IPS_GetKernelRunlevel() == KR_READY) {
-                $this->updateDistrictStats();
+                if (!$this->updateDistrictStats()) {
+                    $this->SetStatus(201);
+                    return;
+                } 
             }
 
             if ($this->ReadPropertyBoolean('Active')) {
@@ -124,8 +127,7 @@ declare(strict_types=1);
             $data = json_decode($dataJSON, true);
 
             if (array_key_exists('error', $data)) {
-                $this->SetStatus(201);
-                return;
+                return false;
             }
 
             $Districts = $data['data'];
