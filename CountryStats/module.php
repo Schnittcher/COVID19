@@ -49,10 +49,10 @@ declare(strict_types=1);
             $this->RegisterVariableFloat('hospitalizationIncidence7Days', $this->Translate('Hospitalization Incidence 7 Days'), '', 14);
 
             if (IPS_GetKernelRunlevel() == KR_READY) {
-                if(!$this->updateCountryStats()) {
-                    $this->SetStatus(200);
+                if (!$this->updateCountryStats()) {
+                    $this->SetStatus(201);
                     return false;
-                };
+                }
             }
 
             if ($this->ReadPropertyBoolean('Active')) {
@@ -89,8 +89,9 @@ declare(strict_types=1);
                 $this->SetValue('hospitalizationIncidence7Days', $data['hospitalization']['incidence7Days']);
 
                 $this->SetValue('last_update', date('U', strtotime($data['meta']['lastUpdate'])));
+                return true;
             } else {
-                $this->SetStatus(200);
+                return false;
             }
         }
     }

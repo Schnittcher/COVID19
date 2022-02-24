@@ -113,8 +113,9 @@ declare(strict_types=1);
                     $this->SetValue('deltaRecovered', $data['delta']['recovered']);
 
                     $this->SetValue('last_update', date('U', strtotime($meta['lastUpdate'])));
+                    return true;
                 } else {
-                    $this->SetStatus(200);
+                    return false;
                 }
             }
         }

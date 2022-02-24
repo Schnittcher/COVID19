@@ -50,7 +50,7 @@ declare(strict_types=1);
 
             if (IPS_GetKernelRunlevel() == KR_READY) {
                 if (!$this->updateProvinceStats()) {
-                    $this->SetStatus(200);
+                    $this->SetStatus(201);
                     return;
                 }
             }
@@ -96,6 +96,7 @@ declare(strict_types=1);
                             $this->SetValue('last_update', date('U', strtotime($meta['lastUpdate'])));
                         }
                     }
+                    return true;
                 } else {
                     return false;
                 }
