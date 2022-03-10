@@ -56,7 +56,7 @@ declare(strict_types=1);
                 if (!$this->updateDistrictStats()) {
                     $this->SetStatus(201);
                     return;
-                } 
+                }
             }
 
             if ($this->ReadPropertyBoolean('Active')) {
