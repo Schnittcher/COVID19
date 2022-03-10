@@ -3,7 +3,9 @@
     "name": "CountryStats",
     "type": 3,
     "vendor": "",
-    "aliases": ["COVID-19 Landes Statistik"],
+    "aliases": [
+        "COVID-19 Landes Statistik"
+    ],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],

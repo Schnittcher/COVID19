@@ -3,7 +3,9 @@
     "name": "ProvinceStats",
     "type": 3,
     "vendor": "",
-    "aliases": ["COVID-19 Bundesland Statistik"],
+    "aliases": [
+        "COVID-19 Bundesland Statistik"
+    ],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],

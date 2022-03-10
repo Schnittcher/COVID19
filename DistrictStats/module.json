@@ -3,7 +3,9 @@
     "name": "DistrictStats",
     "type": 3,
     "vendor": "",
-    "aliases": ["COVID-19 Landkreis Statistik"],
+    "aliases": [
+        "COVID-19 Landkreis Statistik"
+    ],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
